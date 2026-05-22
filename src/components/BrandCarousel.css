@@ -1,0 +1,97 @@
+.brand-carousel-container {
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+  padding: 40px 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+}
+
+.brand-carousel-container::before,
+.brand-carousel-container::after {
+  content: "";
+  height: 100%;
+  position: absolute;
+  width: 150px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.brand-carousel-container::before {
+  left: 0;
+  top: 0;
+  background: linear-gradient(to right, var(--bg-primary) 0%, transparent 100%);
+}
+
+.brand-carousel-container::after {
+  right: 0;
+  top: 0;
+  background: linear-gradient(to left, var(--bg-primary) 0%, transparent 100%);
+}
+
+.brand-carousel-track {
+  display: flex;
+  width: 4800px; /* (200*5 + 120 + 80*6) * 3 sets = 1600 * 3 */
+  animation: scroll 40s linear infinite;
+  align-items: center;
+  gap: 80px;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+.brand-logo-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: 200px; 
+}
+
+.carousel-logo {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(1) brightness(0.8);
+  transition: opacity 0.3s ease, filter 0.3s ease;
+  opacity: 0.6;
+}
+
+.brand-logo-item:hover .carousel-logo {
+  filter: grayscale(0) brightness(1);
+  opacity: 1;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-1600px, 0, 0);
+  }
+}
+
+@media (max-width: 768px) {
+  .brand-carousel-track {
+    width: 3600px; /* Simplified for mobile */
+    animation-duration: 30s;
+  }
+  
+  .brand-logo-item {
+    width: 150px;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-1200px, 0, 0); /* Adjust based on mobile widths */
+    }
+  }
+
+  .carousel-logo {
+    height: 35px;
+  }
+}

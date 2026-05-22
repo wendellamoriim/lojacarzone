@@ -1,0 +1,489 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 20px 0;
+  transition: all var(--transition-normal);
+  border-bottom: none;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.header.scrolled {
+  padding: 12px 0;
+  border-bottom: none;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-family: 'Outfit', sans-serif;
+  transition: all var(--transition-fast);
+  position: relative;
+  padding: 8px 0;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.cart-btn {
+  position: relative;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all var(--transition-fast);
+}
+
+.cart-btn:hover {
+  background: rgba(255, 30, 30, 0.1);
+  color: var(--color-primary);
+}
+
+.cart-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid var(--bg-primary);
+}
+
+.mobile-menu-btn {
+  display: none;
+  color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 15px 0;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 64px);
+    flex-direction: column;
+    padding: 40px 24px;
+    gap: 30px;
+    background: var(--bg-primary);
+    border: none !important;
+    box-shadow: none !important;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 1;
+    pointer-events: auto;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 99;
+  }
+
+  .nav-links.active {
+    transform: translateX(0);
+  }
+
+  .nav-link {
+    font-size: 1.2rem;
+    padding: 10px 0;
+    width: auto;
+    text-align: center;
+    letter-spacing: 3px;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+  }
+
+  .logo-img {
+    height: 32px;
+  }
+}
+
+/* ==========================================
+   MEGA MENU STYLES (DESKTOP & MOBILE)
+   ========================================== */
+
+.nav-item-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.arrow-icon {
+  transition: transform var(--transition-normal);
+  color: var(--text-secondary);
+}
+
+.nav-item-dropdown:hover .arrow-icon {
+  transform: rotate(180deg);
+  color: var(--color-primary);
+}
+
+.active-filter {
+  color: var(--color-primary) !important;
+  font-weight: 600 !important;
+}
+
+/* Mega Menu Container */
+.mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  width: 750px;
+  opacity: 0;
+  visibility: hidden;
+  padding: 30px;
+  margin-top: 15px;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 1px rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 110;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Ponte de Hover Invisível (Evita que o menu feche ao mover o mouse entre o botão e o painel) */
+.mega-menu::before {
+  content: '';
+  position: absolute;
+  top: -25px; /* Cobre o espaço do margin-top de 15px e entra um pouco no botão do menu */
+  left: 0;
+  width: 100%;
+  height: 30px; /* Altura suficiente para garantir a sobreposição segura */
+  background: transparent;
+  z-index: -1;
+}
+
+/* Show Mega Menu on Hover (Desktop) */
+@media (min-width: 769px) {
+  .nav-item-dropdown:hover .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+  }
+}
+
+.mega-menu-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1.2fr 1.6fr;
+  gap: 30px;
+}
+
+.mega-menu-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.mega-column-title {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-primary);
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mega-links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mega-link-item {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: left;
+  padding: 4px 0;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.mega-link-item::before {
+  content: '';
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary);
+  margin-right: 0;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.mega-link-item:hover {
+  color: var(--text-primary);
+  transform: translateX(5px);
+}
+
+.mega-link-item:hover::before {
+  width: 8px;
+  margin-right: 8px;
+}
+
+/* Promo Column Card */
+.promo-column {
+  justify-content: center;
+}
+
+.promo-banner-card {
+  background: linear-gradient(135deg, rgba(255, 30, 30, 0.08) 0%, rgba(0, 0, 0, 0.6) 100%);
+  border: 1px solid rgba(255, 30, 30, 0.2);
+  border-radius: 8px;
+  padding: 24px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 15px rgba(255, 30, 30, 0.05);
+}
+
+.promo-banner-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100px;
+  height: 100px;
+  background: var(--color-primary);
+  filter: blur(80px);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.promo-badge {
+  align-self: flex-start;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+}
+
+.promo-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.promo-desc {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.promo-action-btn {
+  background: transparent;
+  border: 1px solid var(--color-primary);
+  color: var(--text-primary);
+  padding: 8px 16px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  align-self: flex-start;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.promo-action-btn:hover {
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(255, 30, 30, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ==========================================
+   MOBILE DROPDOWN RESPONSIVENESS
+   ========================================== */
+
+@media (max-width: 768px) {
+  .nav-item-dropdown {
+    width: 100%;
+    text-align: center;
+  }
+
+  .dropdown-toggle {
+    justify-content: center;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .dropdown-toggle .arrow-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .dropdown-toggle .arrow-icon.rotate {
+    transform: rotate(180deg);
+  }
+
+  /* No Mobile, o Mega Menu vira Accordion */
+  .mega-menu {
+    position: static;
+    transform: none !important;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+    padding: 0;
+    margin-top: 0;
+    box-shadow: none;
+    border: none;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    background: transparent;
+    pointer-events: none;
+  }
+
+  .mega-menu.mobile-active {
+    opacity: 1;
+    visibility: visible;
+    height: auto;
+    padding: 15px 10px;
+    pointer-events: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.02);
+    margin: 10px 0;
+    border-radius: 8px;
+  }
+
+  .mega-menu-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    text-align: left;
+  }
+
+  .mega-column-title {
+    margin-bottom: 12px;
+    font-size: 0.7rem;
+  }
+
+  .mega-links-list {
+    gap: 8px;
+    padding-left: 10px;
+  }
+
+  .mega-link-item {
+    font-size: 0.95rem;
+    padding: 6px 0;
+  }
+
+  .promo-banner-card {
+    padding: 20px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .promo-badge {
+    align-self: center;
+  }
+
+  .promo-action-btn {
+    align-self: center;
+  }
+}
+

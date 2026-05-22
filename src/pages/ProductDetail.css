@@ -1,0 +1,301 @@
+.product-detail-layout {
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  color: #fff;
+  padding-top: 100px; /* Espaço para o Header fixo */
+  padding-bottom: 80px;
+}
+
+.product-detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.btn-back-catalog {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-bottom: 30px;
+  transition: all var(--transition-fast);
+}
+
+.btn-back-catalog:hover {
+  background: rgba(255, 30, 30, 0.08);
+  border-color: rgba(255, 30, 30, 0.3);
+  color: #fff;
+  transform: translateX(-3px);
+}
+
+/* Grade Principal */
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 50px;
+  margin-bottom: 60px;
+}
+
+/* Coluna de Imagem */
+.detail-image-sec {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 40px;
+  aspect-ratio: 1.2;
+  position: relative;
+  overflow: hidden;
+}
+
+.detail-main-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.5));
+  transition: transform 0.5s ease;
+}
+
+.detail-image-sec:hover .detail-main-img {
+  transform: scale(1.04);
+}
+
+/* Coluna de Conteúdo */
+.detail-info-sec {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.detail-badges-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.badge-detail {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.badge-detail.category {
+  border-color: rgba(255, 30, 30, 0.3);
+  color: #ff4d4d;
+  background: rgba(255, 30, 30, 0.05);
+  transition: all var(--transition-fast, 0.2s);
+}
+
+.badge-detail.category:hover {
+  background: rgba(255, 30, 30, 0.15);
+  border-color: #ff3333;
+  color: #ff6666;
+  box-shadow: 0 0 10px rgba(255, 51, 51, 0.3);
+  transform: translateY(-1px);
+}
+
+.badge-detail.brand {
+  border-color: rgba(96, 165, 250, 0.3);
+  color: #60a5fa;
+  background: rgba(96, 165, 250, 0.05);
+}
+
+.detail-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.detail-stock-status {
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.detail-stock-status .esgotado {
+  color: #ef4444;
+}
+
+.detail-stock-status .em-estoque {
+  color: #4ade80;
+}
+
+.detail-price-box {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.detail-current-price {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.detail-old-price {
+  font-size: 1.2rem;
+  color: #555;
+  text-decoration: line-through;
+}
+
+.detail-short-desc {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  border-left: 3px solid var(--color-primary);
+  padding-left: 16px;
+}
+
+.btn-detail-add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #cc2222, #ff3333);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 14px 32px;
+  transition: all 0.2s;
+  box-shadow: 0 4px 18px rgba(255, 30, 30, 0.3);
+  width: max-content;
+}
+
+.btn-detail-add:hover:not(:disabled) {
+  opacity: 0.95;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(255, 30, 30, 0.45);
+}
+
+.btn-detail-add:disabled {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.2);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Seções de Especificações Completas */
+.detail-rich-sections {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding-top: 50px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 50px;
+}
+
+.rich-section-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 20px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 10px;
+}
+
+.rich-text {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.compat-grid-detail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.compat-chip-detail {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all var(--transition-fast, 0.2s);
+}
+
+.compat-chip-detail:not(.global) {
+  cursor: pointer;
+}
+
+.compat-chip-detail:not(.global):hover {
+  background: rgba(255, 30, 30, 0.08);
+  border-color: rgba(255, 30, 30, 0.4);
+  color: #ff4d4d;
+  box-shadow: 0 0 10px rgba(255, 51, 51, 0.15);
+  transform: translateY(-1px);
+}
+
+.compat-chip-detail.global {
+  border-color: rgba(34, 197, 94, 0.3);
+  color: #4ade80;
+  background: rgba(34, 197, 94, 0.03);
+}
+
+/* Loading state */
+.detail-loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 160px 20px;
+  color: rgba(255, 255, 255, 0.4);
+  gap: 20px;
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .detail-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .detail-image-sec {
+    aspect-ratio: 1.4;
+    padding: 20px;
+  }
+
+  .detail-rich-sections {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .detail-title {
+    font-size: 1.8rem;
+  }
+
+  .btn-detail-add {
+    width: 100%;
+  }
+}
