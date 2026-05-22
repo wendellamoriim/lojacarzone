@@ -16,7 +16,7 @@ export function AdminLogin() {
     setLoading(true);
     setError('');
 
-    const { error } = await signIn(email, password);
+    const { error } = await signIn(email.trim().toLowerCase(), password);
     if (error) {
       setError('E-mail ou senha incorretos. Verifique suas credenciais.');
     } else {
@@ -54,6 +54,9 @@ export function AdminLogin() {
               onChange={(e) => setEmail(e.target.value)}
               required
               autoComplete="email"
+              autoCapitalize="none"
+              autoCorrect="off"
+              spellCheck="false"
             />
           </div>
 
