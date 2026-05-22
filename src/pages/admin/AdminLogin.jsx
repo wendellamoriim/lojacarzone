@@ -16,9 +16,14 @@ export function AdminLogin() {
     setLoading(true);
     setError('');
 
-    const { error } = await signIn(email.trim().toLowerCase(), password);
+    const { error } = await signIn(email.trim().toLowerCase(), password.trim());
     if (error) {
-      setError('E-mail ou senha incorretos. Verifique suas credenciais.');
+      console.error('Erro ao fazer login:', error);
+      if (error.message?.includes('Invalid login credentials') || error.status === 400) {
+        setError('E-mail ou senha incorretos. Verifique se digitou corretamente.');
+      } else {
+        setError(`Falha de conexão: ${error.message || 'Erro ao conectar ao servidor de autenticação.'}`);
+      }
     } else {
       navigate('/garagemcz/dashboard');
     }
