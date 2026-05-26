@@ -1,4 +1,4 @@
-import { Mail, Globe, MessageCircle } from 'lucide-react';
+import { Mail, Instagram, MessageCircle } from 'lucide-react';
 import { brands } from '../data/brands';
 
 export function Footer() {
@@ -18,9 +18,9 @@ export function Footer() {
               O catálogo digital definitivo para quem busca alta performance, tecnologia e estética automotiva premium.
             </p>
             <div className="social-links">
-              <a href="#" className="social-link" title="Website"><Globe size={20} /></a>
-              <a href="#" className="social-link" title="WhatsApp"><MessageCircle size={20} /></a>
-              <a href="#" className="social-link" title="Email"><Mail size={20} /></a>
+              <a href="https://www.instagram.com/carzoneloja_?igsh=MXg0YTlyeHkwa3gzYg==" target="_blank" rel="noopener noreferrer" className="social-link" title="Instagram"><Instagram size={20} /></a>
+              <a href="https://wa.me/5593991977411" target="_blank" rel="noopener noreferrer" className="social-link" title="WhatsApp"><MessageCircle size={20} /></a>
+              <a href="mailto:lojacarzone@hotmail.com" className="social-link" title="Email"><Mail size={20} /></a>
             </div>
           </div>
 
