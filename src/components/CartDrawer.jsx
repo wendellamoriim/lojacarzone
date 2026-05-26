@@ -11,7 +11,7 @@ export function CartDrawer({ isOpen, setIsOpen, cart, updateQuantity, removeFrom
     if (cart.length === 0) return;
 
     // ALTERE AQUI O NÚMERO DO WHATSAPP
-    const WHATSAPP_NUMBER = "5593999999999";
+    const WHATSAPP_NUMBER = "5593991977411";
     
     let text = "Olá! Tenho interesse nesses produtos:\n\n";
     

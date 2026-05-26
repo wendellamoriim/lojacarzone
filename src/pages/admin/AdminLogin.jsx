@@ -19,10 +19,17 @@ export function AdminLogin() {
     const { error } = await signIn(email.trim().toLowerCase(), password.trim());
     if (error) {
       console.error('Erro ao fazer login:', error);
-      if (error.message?.includes('Invalid login credentials') || error.status === 400) {
-        setError('E-mail ou senha incorretos. Verifique se digitou corretamente.');
+      const errorMsg = error.message || '';
+      
+      if (errorMsg.includes('Email not confirmed') || errorMsg.includes('Email not verified')) {
+        setError('Este e-mail ainda não foi confirmado! Por favor, ative a opção "Confirmar e-mail" no painel do Supabase para este usuário ou desative a confirmação de e-mail nas configurações de Autenticação do Supabase.');
+      } else if (errorMsg.includes('Invalid login credentials')) {
+        setError('E-mail ou senha incorretos. Verifique se as credenciais estão certas e se o usuário está ativo.');
+      } else if (error.status === 400) {
+        // Se for outro erro 400, pode ser e-mail não confirmado ou credenciais
+        setError('Falha na autenticação. Verifique se o e-mail foi confirmado e se a senha está correta.');
       } else {
-        setError(`Falha de conexão: ${error.message || 'Erro ao conectar ao servidor de autenticação.'}`);
+        setError(`Falha de conexão: ${errorMsg || 'Erro ao conectar ao servidor de autenticação.'}`);
       }
     } else {
       navigate('/garagemcz/dashboard');

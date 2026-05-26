@@ -46,7 +46,7 @@ export function Footer() {
           <div className="footer-col cta-col">
             <h4>Pronto para montar o seu carro?</h4>
             <p>Fale conosco e tire suas dúvidas direto com a equipe comercial.</p>
-            <button className="btn btn-outline" onClick={() => window.open('https://wa.me/5593999999999', '_blank')}>
+            <button className="btn btn-outline" onClick={() => window.open('https://wa.me/5593991977411', '_blank')}>
               Chamar no WhatsApp
             </button>
           </div>
